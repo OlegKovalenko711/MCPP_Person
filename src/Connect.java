@@ -1,30 +1,21 @@
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.Connection;
 
 public class Connect
 {
-	public static void main(String[] args) throws ClassNotFoundException, SQLException
+	public Statement st;
+	public ResultSet rs;
+	public Connection con;
+
+	public void connectToDB() throws ClassNotFoundException, SQLException
 	{
-		ArrayList<Person> pp = new ArrayList<>();
-
 		Class.forName("org.h2.Driver");
-		Connection con = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
-		java.sql.Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery("select * from Person");
-
-		while (rs.next())
-		{
-			pp.add(new Person(rs.getInt("id"), rs.getString("fName"), rs.getString("lName"), rs.getInt("age")));
-		}
-
-		for (Person p : pp)
-		{
-			System.out.println(p.toString());
-		}
-		
-		con.close();
+		con = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
+		st = con.createStatement();
 	}
 }
