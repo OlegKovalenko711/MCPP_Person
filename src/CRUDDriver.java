@@ -51,11 +51,4 @@ public class CRUDDriver
 		connect.con.close();
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException
-	{
-		CRUDDriver cd = new CRUDDriver();
-		Person p = new Person(4, "rr", "uu", 789);
-
-		cd.read();
-	}
 }
